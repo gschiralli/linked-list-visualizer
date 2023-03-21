@@ -5,7 +5,7 @@ function App() {
   const [theme, setTheme] = useState("light");
 
   return (
-    <div className={`bg-${theme}`}>
+    <div className={`bg-${theme}`} style={{ height: "100vh" }}>
       <Header theme={theme} setTheme={setTheme} />
     </div>
   );
