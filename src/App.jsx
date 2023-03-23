@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Header from "./components/Header";
 import { LinkedList } from "./models/LinkedList";
+import MenuBar from "./components/MenuBar";
 
 function App() {
   const [theme, setTheme] = useState("light");
@@ -8,6 +9,9 @@ function App() {
   return (
     <div className={`bg-${theme}`} style={{ height: "100vh" }}>
       <Header theme={theme} setTheme={setTheme} />
+      <div className="max-w-[1118px] mx-auto my-0 px-4">
+        <MenuBar />
+      </div>
     </div>
   );
 }

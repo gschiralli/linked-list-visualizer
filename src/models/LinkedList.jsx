@@ -4,6 +4,7 @@ export class LinkedList {
     this.size = 0;
   }
 
+  //add node at the end of the list
   add(value, color) {
     let node = new ListNode(value, color);
     let current;
@@ -19,6 +20,7 @@ export class LinkedList {
     this.size++;
   }
 
+  //insert a node at a specific index
   insertAt(value, color, index) {
     if (index < 0 || index > this.size) {
       throw new Error("Please enter a valid index");
@@ -42,6 +44,7 @@ export class LinkedList {
       this.size++;
     }
   }
+  //remove node from a specific index
   removeFrom(index) {
     if (index < 0 || index >= this.size)
       throw new Error("Please Enter a valid index");
@@ -73,6 +76,7 @@ export class LinkedList {
       return curr.element;
     }
   }
+  //reverse the order of the list
   reverse() {
     if (this.size === 0) return;
 
