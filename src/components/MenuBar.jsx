@@ -1,13 +1,31 @@
 import MethodDropDown from "./MethodDropDown";
 import { useState } from "react";
 import ColorDropDown from "./ColorDropDown";
-const MenuBar = () => {
-  const [activeOption, setActiveOption] = useState("Add");
+const MenuBar = ({ activeOption, setActiveOption }) => {
   const [value, setValue] = useState("");
   const [index, setIndex] = useState("");
 
+  function handleSubmit(e) {
+    e.preventDefault();
+  }
+
+  function updateList() {
+    switch (activeOption) {
+      case "Add":
+        break;
+      case "Insert":
+        break;
+      case "Remove":
+        break;
+      case "Reverse":
+        break;
+    }
+  }
   return (
-    <form className="grid grid-cols-[repeat(auto-fill,minmax(3.75rem,7.5rem))] gap-4 pt-20 pb-40 px-0">
+    <form
+      onSubmit={handleSubmit}
+      className="grid grid-cols-[repeat(auto-fill,minmax(3.75rem,7.5rem))] gap-4 pt-20 pb-40 px-0"
+    >
       <MethodDropDown
         activeOption={activeOption}
         setActiveOption={setActiveOption}
