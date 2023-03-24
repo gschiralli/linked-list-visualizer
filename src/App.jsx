@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useReducer } from "react";
 import Header from "./components/Header";
 import { LinkedList } from "./models/LinkedList";
 import MenuBar from "./components/MenuBar";
@@ -16,22 +16,23 @@ function App() {
   const [activeOption, setActiveOption] = useState("Add");
 
   // List to render
-  const [list, setList] = useState([]);
+  const [state, dispatch] = useReducer(reducer, null, createListArray);
+
+  //reducer function
+  function reducer() {}
 
   // convert linked list into an array
-  function listToArray() {
+  function createListArray() {
     const arr = [];
     let node = initList.head;
     while (node) {
       arr.push(node);
       node = node.next;
     }
-    setList(arr);
+    return {
+      list: arr,
+    };
   }
-
-  useEffect(() => {
-    listToArray();
-  }, []);
 
   return (
     <div
@@ -45,14 +46,14 @@ function App() {
         }`}
       >
         <MenuBar
-          list={list}
-          setList={setList}
+          list={state.list}
+          setList={reducer}
           activeOption={activeOption}
           setActiveOption={setActiveOption}
         />
         {
           /* loop over list and render node */
-          list.map((item, idx) => (
+          state.list.map((item, idx) => (
             <Node
               value={item.value}
               key={idx}
