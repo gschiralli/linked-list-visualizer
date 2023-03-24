@@ -16,12 +16,12 @@ const Header = ({ theme, setTheme }) => {
     <header className="max-w-[1118px] mx-auto my-0 px-4 py-4">
       <div className="flex justify-between items-center">
         <p
-          className={`hidden md:block font-fira font-extrabold text-2xl  xl:text-3xl text-black dark:text-white`}
+          className={`hidden md:block font-fira font-extrabold text-2xl  xl:text-3xl text-fontPrimary dark:text-white`}
         >
           Gianni.Schiralli
         </p>
         <p
-          className={`md:hidden font-fira font-extrabold text-3xl text-black dark:text-white`}
+          className={`md:hidden font-fira font-extrabold text-3xl text-fontPrimary dark:text-white`}
         >
           G.S
         </p>

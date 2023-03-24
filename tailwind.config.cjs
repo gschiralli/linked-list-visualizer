@@ -12,10 +12,14 @@ module.exports = {
       }),
       fontFamily: {
         fira: ["Fira Code", "sans-serif"],
+        sans: ["Roboto", "sans-serif"],
       },
       colors: {
         dark: "#3e3e3e",
-        light: "#fafafa",
+        light: "#f9f7f7",
+        primary: "#DBE2EF",
+        secondary: "#3F72AF",
+        fontPrimary: "#112D4E",
       },
     },
   },

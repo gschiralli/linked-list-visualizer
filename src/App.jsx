@@ -7,7 +7,10 @@ function App() {
   const [theme, setTheme] = useState("light");
   const initList = new LinkedList();
   return (
-    <div className={`bg-${theme}`} style={{ height: "100vh" }}>
+    <div
+      className={theme === "light" ? "bg-light" : "bg-dark"}
+      style={{ height: "100vh" }}
+    >
       <Header theme={theme} setTheme={setTheme} />
       <div className="max-w-[1118px] mx-auto my-0 px-4">
         <MenuBar />
