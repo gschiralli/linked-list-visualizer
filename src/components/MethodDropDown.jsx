@@ -1,8 +1,13 @@
 import { Menu, Transition } from "@headlessui/react";
 import { HiChevronDown } from "react-icons/hi";
-import { Fragment } from "react";
-const DropDown = ({ activeOption, setActiveOption }) => {
-  const options = ["Add", "Insert", "Remove", "Reverse"];
+import { Fragment, useEffect, useState } from "react";
+import { useFilter } from "./../hooks/useFilter";
+const MethodDropDown = ({ activeOption, setActiveOption }) => {
+  const options = useFilter(
+    ["Add", "Insert", "Remove", "Reverse"],
+    activeOption
+  );
+
   return (
     <div className="flex flex-col">
       <p className="dark:text-white text-black p-2 font-semibold">Method</p>
@@ -28,7 +33,7 @@ const DropDown = ({ activeOption, setActiveOption }) => {
           <Menu.Items className=" mt-2 w-full origin-top-right divide-y divide-gray-100 rounded-md  dark:bg-[#737374] bg-black bg-opacity-50 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
             <div className="p-1">
               {options.map((option) => (
-                <Menu.Item key={option} className="the-first-item">
+                <Menu.Item key={option}>
                   {({ close }) => (
                     <button
                       onClick={(e) => {
@@ -51,4 +56,4 @@ const DropDown = ({ activeOption, setActiveOption }) => {
   );
 };
 
-export default DropDown;
+export default MethodDropDown;

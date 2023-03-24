@@ -1,21 +1,18 @@
 import { Menu, Transition } from "@headlessui/react";
 import { useState, Fragment, useEffect } from "react";
 import { HiChevronDown } from "react-icons/hi";
+import { useFilter } from "../hooks/useFilter";
 const ColorDropDown = () => {
   const [activeColour, setActiveColour] = useState("bg-gradient-blue");
-  const [colours, setColours] = useState([]);
-
-  useEffect(() => {
-    const colours = [
+  const colours = useFilter(
+    [
       "bg-gradient-purple",
       "bg-gradient-blue",
       "bg-gradient-green",
       "bg-gradient-orange",
-    ];
-
-    const filteredColours = colours.filter((colour) => colour !== activeColour);
-    setColours(filteredColours);
-  }, [activeColour]);
+    ],
+    activeColour
+  );
 
   return (
     <div className="flex flex-col">
