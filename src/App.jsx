@@ -1,67 +1,92 @@
-import { useState, useEffect, useReducer } from "react";
+import { useState, useReducer } from "react";
 import Header from "./components/Header";
 import { LinkedList } from "./models/LinkedList";
 import MenuBar from "./components/MenuBar";
 import Node from "./components/Node";
-// Initial List to render
-const initList = new LinkedList();
-initList.add(1, "bg-gradient-orange");
-initList.add(2, "bg-gradient-orange");
-initList.add(3, "bg-gradient-orange");
+import listToArray from "./utils/utils";
 
 function App() {
+  // Initial List to render
+  const initList = new LinkedList();
+  initList.add(1, "bg-gradient-orange");
+  initList.add(2, "bg-gradient-orange");
+  initList.add(3, "bg-gradient-orange");
   // Colour theme
   const [theme, setTheme] = useState("light");
-  // Currently selected method
-  const [activeOption, setActiveOption] = useState("Add");
 
   // List to render
-  const [state, dispatch] = useReducer(reducer, null, createListArray);
+  const [state, dispatch] = useReducer(reducer, initList, createListArray);
 
   //reducer function
-  function reducer() {}
+  function reducer(state, action) {
+    const { colour, value, index } = action.payload;
+    const newList = new LinkedList();
+
+    // Copy existing linked list into new one
+    state.list.forEach((node) => {
+      newList.add(node.value, node.color);
+    });
+
+    switch (action.type) {
+      case "Add":
+        newList.add(value, colour);
+        break;
+      case "Insert":
+        newList.insertAt(value, colour, index);
+        break;
+      case "Remove":
+        newList.removeFrom(index);
+        break;
+      case "Reverse":
+        newList.reverse();
+        break;
+      default:
+        break;
+    }
+    const newArr = listToArray(newList);
+    return {
+      ...state,
+      list: newArr,
+      size: newArr.length,
+    };
+  }
 
   // convert linked list into an array
-  function createListArray() {
+  function createListArray(list) {
     const arr = [];
-    let node = initList.head;
+    let node = list.head;
     while (node) {
       arr.push(node);
       node = node.next;
     }
+
     return {
       list: arr,
+      size: arr.length,
     };
   }
 
   return (
     <div
-      style={{ height: "100vh" }}
+      style={{ height: "100%" }}
       className={theme === "light" ? "bg-light" : "bg-dark"}
     >
       <Header theme={theme} setTheme={setTheme} />
-      <div
-        className={`max-w-[1118px] mx-auto my-0 px-4 ${
-          theme === "light" ? "bg-light" : "bg-dark"
-        }`}
-      >
-        <MenuBar
-          list={state.list}
-          setList={reducer}
-          activeOption={activeOption}
-          setActiveOption={setActiveOption}
-        />
-        {
-          /* loop over list and render node */
-          state.list.map((item, idx) => (
-            <Node
-              value={item.value}
-              key={idx}
-              next={item.next ? item.next.value : "null"}
-              color={item.color}
-            />
-          ))
-        }
+      <div className={`max-w-[1118px] mx-auto my-0 px-4 `}>
+        <MenuBar dispatch={dispatch} length={state.size} />
+        <section>
+          {
+            /* loop over list and render node */
+            state.list.map((item, idx) => (
+              <Node
+                value={item.value}
+                key={idx}
+                next={item.next ? item.next.value : "null"}
+                color={item.color}
+              />
+            ))
+          }
+        </section>
       </div>
     </div>
   );

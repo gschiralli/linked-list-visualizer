@@ -1,26 +1,20 @@
 import MethodDropDown from "./MethodDropDown";
 import { useState } from "react";
 import ColorDropDown from "./ColorDropDown";
-const MenuBar = ({ activeOption, setActiveOption }) => {
+const MenuBar = ({ dispatch, length }) => {
+  const [activeOption, setActiveOption] = useState("Add");
+  const [activeColour, setActiveColour] = useState("bg-gradient-orange");
   const [value, setValue] = useState("");
   const [index, setIndex] = useState("");
 
   function handleSubmit(e) {
     e.preventDefault();
+    dispatch({
+      type: activeOption,
+      payload: { colour: activeColour, value: value, index: index },
+    });
   }
 
-  function updateList() {
-    switch (activeOption) {
-      case "Add":
-        break;
-      case "Insert":
-        break;
-      case "Remove":
-        break;
-      case "Reverse":
-        break;
-    }
-  }
   return (
     <form
       onSubmit={handleSubmit}
@@ -32,7 +26,10 @@ const MenuBar = ({ activeOption, setActiveOption }) => {
       />
       {activeOption === "Add" || activeOption === "Insert" ? (
         <>
-          <ColorDropDown />
+          <ColorDropDown
+            activeColour={activeColour}
+            setActiveColour={setActiveColour}
+          />
           <div className="flex flex-col">
             <label
               htmlFor="value"
@@ -46,6 +43,7 @@ const MenuBar = ({ activeOption, setActiveOption }) => {
               type="text"
               name="value"
               id="value"
+              maxLength={10}
               className="inline-flex w-full justify-start rounded-md dark:bg-[#9c9ca2] bg-secondary  px-4 py-2 text-sm font-normal text-light dark:text-black  focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
             />
           </div>
@@ -66,6 +64,8 @@ const MenuBar = ({ activeOption, setActiveOption }) => {
             type="text"
             name="index"
             id="index"
+            min={0}
+            max={length}
             className="inline-flex w-full justify-start rounded-md dark:bg-[#9c9ca2] bg-secondary  px-4 py-2 text-sm font-normal text-light dark:text-black  focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
           />
         </div>
