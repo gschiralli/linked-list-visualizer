@@ -1,18 +1,37 @@
 import MethodDropDown from "./MethodDropDown";
 import { useState } from "react";
 import ColorDropDown from "./ColorDropDown";
+import { validateInput } from "../utils/utils";
 const MenuBar = ({ dispatch, length }) => {
   const [activeOption, setActiveOption] = useState("Add");
   const [activeColour, setActiveColour] = useState("bg-gradient-orange");
   const [value, setValue] = useState("");
   const [index, setIndex] = useState("");
+  const [indexError, setIndexError] = useState("");
 
   function handleSubmit(e) {
     e.preventDefault();
-    dispatch({
-      type: activeOption,
-      payload: { colour: activeColour, value: value, index: index },
-    });
+
+    if (activeOption === "Insert" || activeOption === "Remove") {
+      const errorMessage = validateInput(index, length);
+      if (errorMessage) {
+        setIndexError(errorMessage);
+        return;
+      }
+      dispatch({
+        type: activeOption,
+        payload: { colour: activeColour, value: value, index: parseInt(index) },
+      });
+
+      setIndex("");
+      setIndexError("");
+    } else {
+      dispatch({
+        type: activeOption,
+        payload: { colour: activeColour, value: value, index: index },
+      });
+      setValue("");
+    }
   }
 
   return (
@@ -57,15 +76,17 @@ const MenuBar = ({ dispatch, length }) => {
             className="dark:text-white text-fontPrimary p-2 font-semibold"
           >
             Index #
+            {indexError && (
+              <span className=" text-red-600 pl-2">{indexError}</span>
+            )}
           </label>
+
           <input
             value={index}
             onChange={(e) => setIndex(e.target.value)}
             type="text"
             name="index"
             id="index"
-            min={0}
-            max={length}
             className="inline-flex w-full justify-start rounded-md dark:bg-[#9c9ca2] bg-secondary  px-4 py-2 text-sm font-normal text-light dark:text-black  focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
           />
         </div>

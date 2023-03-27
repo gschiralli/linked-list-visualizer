@@ -7,3 +7,15 @@ export default function listToArray(list) {
   }
   return arr;
 }
+
+export function validateInput(index, length) {
+  if (
+    isNaN(index) ||
+    parseInt(index) >= length ||
+    parseInt(index) < 0 ||
+    index === ""
+  ) {
+    return `(0 - ${length})`;
+  }
+  return null;
+}

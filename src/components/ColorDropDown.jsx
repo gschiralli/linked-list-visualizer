@@ -40,7 +40,7 @@ const ColorDropDown = ({ activeColour, setActiveColour }) => {
           leaveFrom="transform opacity-100 scale-100"
           leaveTo="transform opacity-0 scale-95"
         >
-          <Menu.Items className=" mt-2 w-full origin-top-right divide-y divide-gray-100 rounded-md  dark:bg-[#737374] bg-primary bg-opacity-50 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+          <Menu.Items className="absolute top-full mt-2 w-full origin-top-right divide-y divide-gray-100 rounded-md  dark:bg-[#737374] bg-primary  shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
             <div className="p-1">
               {colours.map((colour) => (
                 <Menu.Item key={colour}>
@@ -51,7 +51,7 @@ const ColorDropDown = ({ activeColour, setActiveColour }) => {
                         setActiveColour(colour);
                         close();
                       }}
-                      className="ui-active:dark:bg-[#787879] ui-active:bg-[#dae2f3] text-white group flex w-full items-center rounded-md px-2 py-2 text-md cursor-pointer"
+                      className="ui-active:dark:bg-[#787879] ui-active:bg-[#c7d6f6] text-white group flex w-full items-center rounded-md px-2 py-2 text-md cursor-pointer"
                     >
                       <div
                         className={`${colour} w-3/4 h-4 inline-flex align-middle justify-center`}

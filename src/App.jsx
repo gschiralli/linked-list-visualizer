@@ -1,4 +1,4 @@
-import { useState, useReducer } from "react";
+import { useState, useReducer, useEffect } from "react";
 import Header from "./components/Header";
 import { LinkedList } from "./models/LinkedList";
 import MenuBar from "./components/MenuBar";
@@ -16,6 +16,11 @@ function App() {
 
   // List to render
   const [state, dispatch] = useReducer(reducer, initList, createListArray);
+
+  useEffect(() => {
+    document.body.classList.add(theme === "light" ? "bg-light" : "bg-dark");
+    document.body.classList.remove(theme === "light" ? "bg-dark" : "bg-light");
+  }, [theme]);
 
   //reducer function
   function reducer(state, action) {
@@ -67,14 +72,11 @@ function App() {
   }
 
   return (
-    <div
-      style={{ height: "100vh" }}
-      className={theme === "light" ? "bg-light" : "bg-dark"}
-    >
+    <div style={{ height: "100vh" }}>
       <Header theme={theme} setTheme={setTheme} />
       <div className={`max-w-[1118px] mx-auto my-0 px-4 `}>
         <MenuBar dispatch={dispatch} length={state.size} />
-        <section className="grid grid-cols-[repeat(auto-fill,7.5rem)]">
+        <section className="grid grid-cols-[repeat(auto-fill,7.5rem)] ">
           {
             /* loop over list and render node */
             state.list.map((item, idx) => (
