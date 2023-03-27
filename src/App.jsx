@@ -68,21 +68,22 @@ function App() {
 
   return (
     <div
-      style={{ height: "100%" }}
+      style={{ height: "100vh" }}
       className={theme === "light" ? "bg-light" : "bg-dark"}
     >
       <Header theme={theme} setTheme={setTheme} />
       <div className={`max-w-[1118px] mx-auto my-0 px-4 `}>
         <MenuBar dispatch={dispatch} length={state.size} />
-        <section>
+        <section className="grid grid-cols-[repeat(auto-fill,7.5rem)]">
           {
             /* loop over list and render node */
             state.list.map((item, idx) => (
               <Node
                 value={item.value}
                 key={idx}
-                next={item.next ? item.next.value : "null"}
+                next={item.next ? item.next.value : null}
                 color={item.color}
+                idx={idx}
               />
             ))
           }
