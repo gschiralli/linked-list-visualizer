@@ -85,7 +85,7 @@ function App() {
                 (item, idx) => (
                   <Node
                     value={item.value}
-                    key={uuidv4()}
+                    key={idx}
                     next={item.next ? item.next.value : null}
                     color={item.color}
                     idx={idx}
