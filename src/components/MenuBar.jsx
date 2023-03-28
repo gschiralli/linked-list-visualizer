@@ -13,7 +13,7 @@ const MenuBar = ({ dispatch, length }) => {
     e.preventDefault();
 
     if (activeOption === "Insert" || activeOption === "Remove") {
-      const errorMessage = validateInput(index, length);
+      const errorMessage = validateInput(index, length, activeOption);
       if (errorMessage) {
         setIndexError(errorMessage);
         return;
@@ -28,7 +28,7 @@ const MenuBar = ({ dispatch, length }) => {
     } else {
       dispatch({
         type: activeOption,
-        payload: { colour: activeColour, value: value, index: index },
+        payload: { colour: activeColour, value: value, index: parseInt(index) },
       });
       setValue("");
     }

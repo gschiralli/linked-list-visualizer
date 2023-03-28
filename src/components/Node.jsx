@@ -1,9 +1,17 @@
 import { FaLongArrowAltRight } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 const Node = ({ value, next, color, idx }) => {
   const hidden = next === null ? "invisible" : "";
+
   return (
-    <div className=" flex w-full mb-8 ">
+    <motion.div
+      className=" flex w-full mb-8 "
+      layout
+      initial={{ opacity: 0, scale: 0.5 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.5 }}
+    >
       <div className="flex grow-[2] flex-col items-center">
         <p className="text-center pb-2 text-xs text-fontPrimary dark:text-[#9c9ca2] font-semibold">
           {idx}
@@ -25,7 +33,7 @@ const Node = ({ value, next, color, idx }) => {
       >
         <FaLongArrowAltRight className=" h-12 w-12 dark:text-[#9c9ca2] text-secondary" />
       </div>
-    </div>
+    </motion.div>
   );
 };
 

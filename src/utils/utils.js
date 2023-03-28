@@ -8,7 +8,11 @@ export default function listToArray(list) {
   return arr;
 }
 
-export function validateInput(index, length) {
+export function validateInput(index, length, option) {
+  if (length === 0 && parseInt(index) === 0 && option === "Insert") {
+    return null;
+  }
+
   if (
     isNaN(index) ||
     parseInt(index) >= length ||

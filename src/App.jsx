@@ -4,6 +4,7 @@ import { LinkedList } from "./models/LinkedList";
 import MenuBar from "./components/MenuBar";
 import Node from "./components/Node";
 import listToArray from "./utils/utils";
+import { AnimatePresence } from "framer-motion";
 
 function App() {
   // Initial List to render
@@ -76,19 +77,21 @@ function App() {
       <Header theme={theme} setTheme={setTheme} />
       <div className={`max-w-[1118px] mx-auto my-0 px-4 `}>
         <MenuBar dispatch={dispatch} length={state.size} />
-        <section className="grid grid-cols-[repeat(auto-fill,7.5rem)] ">
-          {
-            /* loop over list and render node */
-            state.list.map((item, idx) => (
-              <Node
-                value={item.value}
-                key={idx}
-                next={item.next ? item.next.value : null}
-                color={item.color}
-                idx={idx}
-              />
-            ))
-          }
+        <section className="grid grid-cols-[repeat(auto-fill,7.5rem)]">
+          <AnimatePresence>
+            {
+              /* loop over list and render node */
+              state.list.map((item, idx) => (
+                <Node
+                  value={item.value}
+                  key={idx}
+                  next={item.next ? item.next.value : null}
+                  color={item.color}
+                  idx={idx}
+                />
+              ))
+            }
+          </AnimatePresence>
         </section>
       </div>
     </div>
