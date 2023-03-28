@@ -5,7 +5,7 @@ import MenuBar from "./components/MenuBar";
 import Node from "./components/Node";
 import listToArray from "./utils/utils";
 import { AnimatePresence } from "framer-motion";
-
+import { v4 as uuidv4 } from "uuid";
 function App() {
   // Initial List to render
   const initList = new LinkedList();
@@ -45,6 +45,7 @@ function App() {
         break;
       case "Reverse":
         newList.reverse();
+
         break;
       default:
         break;
@@ -80,16 +81,17 @@ function App() {
         <section className="grid grid-cols-[repeat(auto-fill,7.5rem)]">
           <AnimatePresence>
             {
-              /* loop over list and render node */
-              state.list.map((item, idx) => (
-                <Node
-                  value={item.value}
-                  key={idx}
-                  next={item.next ? item.next.value : null}
-                  color={item.color}
-                  idx={idx}
-                />
-              ))
+              /* loop over list and render node */ state.list.map(
+                (item, idx) => (
+                  <Node
+                    value={item.value}
+                    key={uuidv4()}
+                    next={item.next ? item.next.value : null}
+                    color={item.color}
+                    idx={idx}
+                  />
+                )
+              )
             }
           </AnimatePresence>
         </section>

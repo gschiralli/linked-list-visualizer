@@ -1,9 +1,9 @@
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 const Node = ({ value, next, color, idx }) => {
   const hidden = next === null ? "invisible" : "";
-
   return (
     <motion.div
       className=" flex w-full mb-8 "
