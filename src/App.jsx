@@ -5,7 +5,7 @@ import MenuBar from "./components/MenuBar";
 import Node from "./components/Node";
 import listToArray from "./utils/utils";
 import { AnimatePresence } from "framer-motion";
-import { v4 as uuidv4 } from "uuid";
+
 function App() {
   // Initial List to render
   const initList = new LinkedList();
@@ -45,7 +45,6 @@ function App() {
         break;
       case "Reverse":
         newList.reverse();
-
         break;
       default:
         break;
@@ -76,8 +75,12 @@ function App() {
   return (
     <div style={{ height: "100vh" }}>
       <Header theme={theme} setTheme={setTheme} />
-      <div className={`max-w-[1118px] mx-auto my-0 px-4 `}>
+      <div className="max-w-[1118px] mx-auto my-0 px-4">
         <MenuBar dispatch={dispatch} length={state.size} />
+
+        <h1 className=" font-fira font-extrabold text-4xl text-fontPrimary dark:text-white pb-8">
+          Linked List
+        </h1>
         <section className="grid grid-cols-[repeat(auto-fill,7.5rem)]">
           <AnimatePresence>
             {

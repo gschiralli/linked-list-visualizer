@@ -37,7 +37,7 @@ const MenuBar = ({ dispatch, length }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="grid grid-cols-[repeat(auto-fill,minmax(3.75rem,7.5rem))] gap-4 pt-20 pb-40 px-0 h-80"
+      className="grid grid-cols-[repeat(auto-fill,minmax(3.75rem,7.5rem))] gap-4 py-20 px-0 h-80"
     >
       <MethodDropDown
         activeOption={activeOption}
@@ -101,7 +101,7 @@ const MenuBar = ({ dispatch, length }) => {
         <button
           type="submit"
           name="submit"
-          className="inline-flex w-full justify-center rounded-md dark:bg-[#787879] dark:text-white text-secondary bg-primary px-4 py-2 text-sm font-normal  hover:bg-opacity-60 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 "
+          className="inline-flex w-full justify-center rounded-md dark:bg-[#787879] dark:text-white text-secondary bg-primary px-4 py-2 text-sm font-normal  hover:bg-opacity-60 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
         >
           Execute
         </button>
