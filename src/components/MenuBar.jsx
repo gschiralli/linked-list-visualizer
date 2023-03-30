@@ -37,7 +37,7 @@ const MenuBar = ({ dispatch, length }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="grid grid-cols-[repeat(auto-fill,minmax(3.75rem,7.5rem))] gap-4 py-20 px-0 h-80"
+      className="grid grid-cols-[repeat(auto-fill,minmax(3.75rem,7.5rem))] gap-4 pt-12 px-0 h-auto"
     >
       <MethodDropDown
         activeOption={activeOption}

@@ -75,29 +75,30 @@ function App() {
   return (
     <div style={{ height: "100vh" }}>
       <Header theme={theme} setTheme={setTheme} />
-      <div className="max-w-[1118px] mx-auto my-0 px-4">
+      <div className="max-w-[1118px] mx-auto my-0 px-4 flex flex-col justify-around min-h-[50%]">
         <MenuBar dispatch={dispatch} length={state.size} />
-
-        <h1 className=" font-fira font-extrabold text-4xl text-fontPrimary dark:text-white pb-8">
-          Linked List
-        </h1>
-        <section className="grid grid-cols-[repeat(auto-fill,7.5rem)]">
-          <AnimatePresence>
-            {
-              /* loop over list and render node */ state.list.map(
-                (item, idx) => (
-                  <Node
-                    value={item.value}
-                    key={idx}
-                    next={item.next ? item.next.value : null}
-                    color={item.color}
-                    idx={idx}
-                  />
+        <div className=" mt-3">
+          <h1 className=" font-fira font-extrabold text-4xl text-fontPrimary dark:text-white pb-8">
+            Linked List
+          </h1>
+          <section className="grid grid-cols-[repeat(auto-fill,7.5rem)]">
+            <AnimatePresence>
+              {
+                /* loop over list and render node */ state.list.map(
+                  (item, idx) => (
+                    <Node
+                      value={item.value}
+                      key={idx}
+                      next={item.next ? item.next.value : null}
+                      color={item.color}
+                      idx={idx}
+                    />
+                  )
                 )
-              )
-            }
-          </AnimatePresence>
-        </section>
+              }
+            </AnimatePresence>
+          </section>
+        </div>
       </div>
     </div>
   );
